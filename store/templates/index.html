@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load cart %}
+{% load custom_filter %}
+<div class="container-fluid mt-6 col-lg-9 bg-white" style="padding:20px 0">
+	<div class="row">
+
+		<div class="col-lg-3 mx-auto" style="padding:0 0 0 30px">
+			<div class="list-group">
+				{% for category in categories %}
+				<a href="/store?category={{category.id}}" class="list-group-item list-group-item-action btn btn-outline-secondary ">{{category.name}}</a>
+				{% endfor %}
+			</div>
+			<div class="list-group">
+				<br>
+			</div>
+			<!--<a href="/materials" class="list-group-item list-group-item-action btn btn-outline-success ">Материалы</a>-->
+		</div>
+
+		<div id='products' class="col-lg-9 mx-auto">
+			<div class="row mx-auto">
+				{% for product in products %}
+				<div class="card mx-auto mb-3" id={{product.id}} style="width: 18rem;">
+					<img class="card-img-top " src="{{product.image.url}}" alt="Изображение товара" style="height:250px;weight:auto; object-fit: contain; padding:20px">
+					<div class="card-body">
+						<p class="card-title text-center">{{product.name}}</p>
+						<p class="card-text text-center"><b style="color:#bca480;">{{product.price|currency}}</b></p>
+					</div>
+
+					<div class="card-footer p-0 no-gutters">
+						<form action="/#{{product.id}}" method="POST" class="btn-block">
+							{% csrf_token %}
+							<input hidden type="text" name='product' value='{{product.id}}'>
+							<input type="submit" class="float-right btn btn form-control"
+								value="Добавить в корзину" style="color:black; background: #bca480;">
+						</form>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+{% endblock %}
