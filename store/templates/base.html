@@ -20,22 +20,55 @@
       background-image: url(https://i.ibb.co/fSQLqGL/image.jpg);
       background-repeat: repeat;
     }
+    /* Стиль для плавающей кнопки */
+    .floating-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 9999;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      color: gray;
+      text-align: center;
+      line-height: 50px;
+      font-size: 20px;
+    }
+    /* Стиль для скроллбара */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(0, 0, 0, 0.7);
+    }
   </style>
 </head>
 
 <body>
   <!-- navbar -->
 
-<nav class="shadow navbar navbar-light sticky-top navbar navbar-expand-lg text-white">
-  <div class="container-fluid align-content-center">
-  <a class="navbar-brand ms-3 text-dark text-center" href="/store">
-    Интернет-магазин
-    <br>
-    текстильной продукции
-  </a>
-  
-  <div><a href="/store"><img class="mx-auto" style="height:80px;weight:auto;" src="https://i.ibb.co/QQNyYb1/2.png"></a></div>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02"
+  <nav class="shadow navbar navbar-light sticky-top navbar navbar-expand-lg text-white">
+    <div class="container-fluid align-content-center">
+      <a class="navbar-brand ms-3 text-dark text-center" href="/store">
+        Интернет-магазин
+        <br>
+        текстильной продукции
+      </a>
+
+      <div>
+        <a href="/store"><img class="mx-auto" style="height:80px;width:auto;" src="https://i.ibb.co/QQNyYb1/2.png"></a>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02"
         aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -83,4 +116,5 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
 </body>
+
 </html>

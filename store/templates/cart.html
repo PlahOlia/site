@@ -23,12 +23,16 @@
                 
                 {% for product in products %}
                 <tr>
-                    <td>{{forloop.counter}}</td>
-                    <td><img style="height: 80px;" class="rounded-circle" src="{{product.image.url}}" alt=""></td>
-                    <td>{{product.name}}</td>
-                    <td>{{product.price|currency}}</td>
-                    <td><button id="minus">-</button>{{product|cart_quantity:request.session.cart}}<button id="plus">+</button></td>
-                    <td>{{product|price_total:request.session.cart|currency}}</td>
+                  <td>{{forloop.counter}}</td>
+                  <td><img style="height: 80px;" class="rounded-circle" src="{{product.image.url}}" alt=""></td>
+                  <td>{{product.name}}</td>
+                  <td>{{product.price|currency}}</td>
+                  <td>
+                    <button class="btn btn-sm btn-secondary mx-1" onclick="decreaseQuantity('{{ product.id }}')"style="height: 30px; width: 28px;text-align: center;">-</button>
+                    {{ product|cart_quantity:request.session.cart }}
+                    <button class="btn btn-sm btn-secondary mx-1" onclick="increaseQuantity('{{ product.id }}')"style="height: 30px; width: 28px;text-align: center;">+</button>
+                  </td>
+                  <td>{{product|price_total:request.session.cart|currency}}</td>
                 </tr>
 
                 {% endfor %}
@@ -42,12 +46,18 @@
                     </th>
                     <th>{{products|total_cart_price:request.session.cart|currency}}</th>
                 </tr>
+                <tr>
+                  <td colspan="6" class="text-right">
+                    <button id="btn-clear-cart" class="btn btn-outline-danger">Очистить корзину</button>
+                  </td>
+                </tr>
             </tfoot>
         </table>
         <hr>
         <div class="m-3 p-3">
             <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-secondary border rounded  col-lg-3 float-right " style="background:#bca480;color:black;">Заказать</a>
         </div>
+        <div class="text-right"><p style="font-size: 14px; color: gray;">*После оформления заказа, ожидайте звонка от менеджера</p>
    </div>
 </div>
 
@@ -69,7 +79,7 @@
         </div>
         <div class="modal-body">
           <div class="m-2 p-3">
-            <form action="/check-out" method="POST">
+            <form action="check-out/" method="POST">
                 {% csrf_token %}
                 <div class="form-group">
                   <label for="">Адрес доставки</label>
@@ -85,10 +95,11 @@
             </form>
           </div>
         </div>
-        
+
       </div>
     </div>
   </div>
+
 
 
 

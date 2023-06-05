@@ -32,11 +32,13 @@
                     <td>{{order.price|currency}}</td>
                     <td>{{order.quantity}}</td>
                     <td>{{order.quantity|multiply:order.price|currency}}</td>
-                    {% if order.status %}
-                    <td><small class="badge badge-success"style="color:black">Выполнено</small></td>
-                    {%else%}
+                {% if order.status == 0 %}
                     <td><small class="badge badge-warning" style="color:black">В обработке</small></td>
-                    {% endif %}
+                {% elif order.status == 1 %}
+                    <td><small class="badge badge-success" style="color:black">Выполнен</small></td>
+                {% elif order.status == 2 %}
+                    <td><small class="badge badge-success" style="color:black">Принят</small></td>
+                {% endif %}
                 </tr>
 
                 {% endfor %}

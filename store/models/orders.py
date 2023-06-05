@@ -14,7 +14,14 @@ class Order(models.Model):
     address = models.CharField (max_length=50, default='', blank=True)
     phone = models.CharField (max_length=50, default='', blank=True)
     date = models.DateField (default=datetime.datetime.today)
-    status = models.BooleanField (default=False)
+    STATUS_CHOICES = [
+        (0, 'В обработке'),
+        (1, 'Выполнен'),
+        (2, 'Принят'),
+        ]
+    
+    status = models.IntegerField(choices=STATUS_CHOICES, default=0)
+
 
     def placeOrder(self):
         self.save()

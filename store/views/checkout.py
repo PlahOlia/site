@@ -29,3 +29,5 @@ class CheckOut(View):
         request.session['cart'] = {}
 
         return redirect('cart')
+    
+    

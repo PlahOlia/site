@@ -7,4 +7,5 @@ class Mt(View):
 
     def get(self, request):
         return render(request, 'material.html')
+    
 
