@@ -8,6 +8,12 @@ from store.models.product import Products
 class Cart(View):
     def get(self , request):
         ids = list(request.session.get('cart').keys())
+        print(request.session.get('cart'))
         products = Products.get_products_by_id(ids)
-        print(products)
+        print(ids, products)
         return render(request , 'cart.html' , {'products' : products} )
+
+
+def delete_cart(request):
+    request.session['cart'] = {}
+    return redirect('store:cart')

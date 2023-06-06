@@ -30,8 +30,8 @@ class Index(View):
             cart[product] = 1
 
         request.session['cart'] = cart
-        print('cart' , request.session['cart'])
-        return redirect('store')
+        print('cart', request.session['cart'])
+        return redirect('store:store')
 
     def get(self , request):
         return HttpResponseRedirect(f'/store{request.get_full_path()[1:]}')

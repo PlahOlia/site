@@ -1,14 +1,15 @@
-from django.shortcuts import render , redirect , HttpResponseRedirect
+from django.shortcuts import render, redirect , HttpResponseRedirect
 from django.contrib.auth.hashers import  check_password
 from store.models.customer import Customer
 from django.views import View
+from django.urls import reverse_lazy
 
 
 class Login(View):
     return_url = None
 
     def get(self, request):
-        Login.return_url = request.GET.get ('return_url')
+        Login.return_url = request.GET.get('return_url')
         return render (request, 'login.html')
 
     def post(self, request):
@@ -25,7 +26,7 @@ class Login(View):
                     return HttpResponseRedirect (Login.return_url)
                 else:
                     Login.return_url = None
-                    return redirect ('homepage')
+                    return redirect('store:homepage')
             else:
                 error_message = 'Ошибка!'
         else:
@@ -36,4 +37,4 @@ class Login(View):
 
 def logout(request):
     request.session.clear()
-    return redirect('login')
+    return redirect('store:login')

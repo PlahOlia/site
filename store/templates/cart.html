@@ -28,9 +28,13 @@
                   <td>{{product.name}}</td>
                   <td>{{product.price|currency}}</td>
                   <td>
-                    <button class="btn btn-sm btn-secondary mx-1" onclick="decreaseQuantity('{{ product.id }}')"style="height: 30px; width: 28px;text-align: center;">-</button>
+                    <button class="btn btn-sm btn-secondary mx-1" style="height: 30px; width: 28px;text-align: center;">
+                      -
+                    </button>
                     {{ product|cart_quantity:request.session.cart }}
-                    <button class="btn btn-sm btn-secondary mx-1" onclick="increaseQuantity('{{ product.id }}')"style="height: 30px; width: 28px;text-align: center;">+</button>
+                    <button class="btn btn-sm btn-secondary mx-1" style="height: 30px; width: 28px;text-align: center;">
+                      +
+                    </button>
                   </td>
                   <td>{{product|price_total:request.session.cart|currency}}</td>
                 </tr>
@@ -48,7 +52,7 @@
                 </tr>
                 <tr>
                   <td colspan="6" class="text-right">
-                    <button id="btn-clear-cart" class="btn btn-outline-danger">Очистить корзину</button>
+                    <button id="btn-clear-cart" class="btn btn-outline-danger"><a href="{% url 'store:clean_cart' %}">Очистить корзину</a></button>
                   </td>
                 </tr>
             </tfoot>
@@ -79,7 +83,7 @@
         </div>
         <div class="modal-body">
           <div class="m-2 p-3">
-            <form action="check-out/" method="POST">
+            <form method="POST">
                 {% csrf_token %}
                 <div class="form-group">
                   <label for="">Адрес доставки</label>
