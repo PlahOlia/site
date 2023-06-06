@@ -111,3 +111,5 @@ STATIC_URL = '/static/'
 MEDIA_URL = "/image/download/"
 MEDIA_ROOT = BASE_DIR
 APPEND_SLASH = False
+
+SESSION_SAVE_EVERY_REQUEST=True

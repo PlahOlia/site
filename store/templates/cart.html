@@ -29,11 +29,11 @@
                   <td>{{product.price|currency}}</td>
                   <td>
                     <button class="btn btn-sm btn-secondary mx-1" style="height: 30px; width: 28px;text-align: center;">
-                      -
+                      <a href="{% url 'store:decrease_item_cart' product.pk %}">-</a>
                     </button>
                     {{ product|cart_quantity:request.session.cart }}
                     <button class="btn btn-sm btn-secondary mx-1" style="height: 30px; width: 28px;text-align: center;">
-                      +
+                      <a href="{% url 'store:increase_item_cart' product.pk %}">+</a>
                     </button>
                   </td>
                   <td>{{product|price_total:request.session.cart|currency}}</td>
